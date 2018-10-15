@@ -1,0 +1,40 @@
+#name {
+  color: cadetblue;
+}
+
+.profile {
+  margin-top: 30%;
+}
+
+.list-font {
+  font-size: 20px;
+}
+
+.publication-list {
+  font-size: 18px;
+}
+
+.year {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+hr {
+  height: 3px;
+  background-color: rgb(197, 223, 224);
+  border: none;
+  margin-top: 5px;
+}
+
+.title {
+  margin-bottom: 0px;
+  color: cadetblue;
+}
+
+.detail-education {
+  font-size: 18px;
+}
+
+ul {
+  list-style-type: square;
+}
