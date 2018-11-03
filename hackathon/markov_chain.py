@@ -38,6 +38,9 @@ class MalkovChain(object):
 
   def fit(self,split_words,word_length=1):
     self.split_word_length = word_length
+    """
+    n-gramの言語モデルの生成
+    """
     for split_word in split_words:
       for i in range(len(split_word) - word_length):
         end_of_word_position = i+word_length
@@ -48,7 +51,6 @@ class MalkovChain(object):
 
   def transform(self,word,limit=1):
     parser = Parser()
-    #import ipdb; ipdb.set_trace()
     word_list = parser.parse(word).split(" ")[:-1] #最後のindexは改行コードの削除必
     if self.split_word_length != len(word_list):
       print("情報が欠如しています。")
@@ -65,7 +67,7 @@ class MalkovChain(object):
       word = random.choice(self.dictionary[temp_word])
       word_list.append(word)
 
-      if "。" in word:
+      if "\n" in word:
         end_cnt = end_cnt + 1
       cnt = cnt + 1
     sentence = ""
@@ -73,9 +75,19 @@ class MalkovChain(object):
       sentence = sentence + word_list[i]
     return sentence
 
-data = ShosetsukaniNarou()
-split_words = data.getData("http://api.syosetu.com/novelapi/api/?genre=1&lim=100&out=json")
+#data = ShosetsukaniNarou()
+#split_words = data.getData("http://api.syosetu.com/novelapi/api/?genre=1&lim=100&out=json")
+"""
+bump_owakati.txtからロードする
+"""
+
+with open("bump_owakati.txt", "r") as f:
+  bump_lyricses = f.readlines()
+
+split_words = [bump_lyrics.split(" ") for bump_lyrics in bump_lyricses]
+
 MalkovChain = MalkovChain()
 MalkovChain.fit(split_words,word_length=2) #ワードを分割する長さを入れる
+
 for i in range(5):
-  print(MalkovChain.transform("日常と", 1)) #ここに単語を入れる
+  print(MalkovChain.transform("懸命に", 1).strip()) #ここに単語を入れる
