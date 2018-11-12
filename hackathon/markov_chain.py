@@ -51,10 +51,7 @@ class MalkovChain(object):
 
   def transform(self,word,limit=1):
     parser = Parser()
-    word_list = parser.parse(word).split(" ")[:-1] #最後のindexは改行コードの削除必
-    if self.split_word_length != len(word_list):
-      print("情報が欠如しています。")
-      return ""
+    word_list = parser.parse(word).split(" ")[:-1]
     end_cnt = 0
     cnt = 0
 
@@ -63,6 +60,19 @@ class MalkovChain(object):
       temp_word = ""
       for stract_word in stract_words:
         temp_word = temp_word + stract_word
+
+      if "\n" in temp_word:
+        copy_word = temp_word
+        for word in reversed(word_list):
+          if word != "\n":
+            temp_word = word + copy_word.strip()
+            if temp_word in self.dictionary:
+              break
+            else:
+              temp_word = copy_word
+      
+      if not temp_word in self.dictionary:
+        temp_word = random.choice(list(self.dictionary.keys()))
 
       word = random.choice(self.dictionary[temp_word])
       word_list.append(word)
@@ -75,12 +85,9 @@ class MalkovChain(object):
       sentence = sentence + word_list[i]
     return sentence
 
-#data = ShosetsukaniNarou()
-#split_words = data.getData("http://api.syosetu.com/novelapi/api/?genre=1&lim=100&out=json")
 """
 bump_owakati.txtからロードする
 """
-
 with open("bump_owakati.txt", "r") as f:
   bump_lyricses = f.readlines()
 
@@ -89,5 +96,18 @@ split_words = [bump_lyrics.split(" ") for bump_lyrics in bump_lyricses]
 MalkovChain = MalkovChain()
 MalkovChain.fit(split_words,word_length=2) #ワードを分割する長さを入れる
 
-for i in range(5):
-  print(MalkovChain.transform("懸命に", 1).strip()) #ここに単語を入れる
+for i in range(50):
+  """
+  ここもランダムに選ぶように変えよう
+  """
+  #import ipdb; ipdb.set_trace()
+  vocab = random.choice(list(MalkovChain.dictionary.keys()))
+  print(MalkovChain.transform(vocab, 2).strip()) #ここに単語を入れる
+
+saved_dict = {}
+
+with open("hujihara.json", "w") as f:
+  parser = Parser()
+  for key, value in MalkovChain.dictionary.items():
+    saved_dict[parser.parse(key).strip()] = value
+  json.dump(saved_dict, f, ensure_ascii=False)

@@ -2,15 +2,70 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>年号の変換 </title>
+<style>
+  .balloon5 {
+    width: 100%;
+    margin: 1.5em 0;
+    overflow: hidden;
+}
+
+.balloon5 .faceicon {
+    float: left;
+    margin-right: -90px;
+    width: 80px;
+}
+
+.balloon5 .faceicon img{
+    width: 100%;
+    height: auto;
+    border: solid 3px #d7ebfe;
+    border-radius: 50%;
+}
+
+.balloon5 .chatting {
+    width: 100%;
+}
+
+.says {
+    display: inline-block;
+    position: relative; 
+    margin: 5px 0 0 105px;
+    padding: 17px 13px;
+    border-radius: 12px;
+    background: #d7ebfe;
+}
+
+.says:after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 18px; 
+    left: -24px;
+    border: 12px solid transparent;
+    border-right: 12px solid #d7ebfe;
+}
+
+.says p {
+    margin: 0;
+    padding: 0;
+}
+</style>
 </head>
 <body>
 <h2>藤原連鎖</h2>
 BUMP OF CHICKENっぽいことを言ってくれるマルコフ連鎖です。
-<form action="hujihara_chain.php" method="post">
-    <input type="submit" value="生成する">
-</from>
-<?php
+<br>
+<br>
+
+
+<div class="balloon5">
+    <div class="faceicon">
+        <img src="./unnamed.jpg" width="200", height="200">
+    </div>
+    <div class="chatting">
+      <div class="says">
+        <p>
+        <?php
 
 class FujiharaChain {
   public $dictionary;
@@ -66,19 +121,14 @@ class FujiharaChain {
   }
 
   public function print_sentences() {
-    echo "<br />";
     for($g = 0; $g <= 10; $g++) {
-      echo "<br />";
-      echo $this->sentences[$g];
+      if($g <= 9) {
+        echo $this->sentences[$g];
+        echo "<br />";
+      } else {
+        echo $this->sentences[$g];
+      }
     }
-  }
-
-  public function debug_print() {
-    $keys = array_keys($this->arr);
-    echo "Hello";
-    echo "<pre>";
-    var_dump($keys);
-    echo "</pre>";
   }
 }
 
@@ -89,7 +139,14 @@ for($gi=0; $gi<10; $gi++) {
 }
 
 $fujihara->print_sentences();
-
 ?>
+        </p>
+      </div>
+    </div>
+  </div>
+
+<form action="hujihara_chain.php" method="post">
+    <input type="submit" value="生成する">
+</from>
 </body>
 </html>

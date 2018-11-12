@@ -23,4 +23,4 @@ with open("title_url.pkl", "wb") as f:
 response = requests.get("http://j-lyric.net/artist/a000673/l002b50.html")
 soup = BeautifulSoup(response.content, "lxml")
 """
-#import ipdb; ipdb.set_trace()#
+#import ipdb; ipdb.set_trace()

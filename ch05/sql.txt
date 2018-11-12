@@ -1,0 +1,15 @@
+課題1
+1. SELECT win, lose, draw FROM winlose
+2. SELECT player, win FROM winlose
+3. SELECT player FROM batter WHERE hit >= 100
+4. SELECT player, win, lose FROM winlose WHERE lose >= win
+5. SELECT player FROM pitcher WHERE lose >= win
+6. SELECT player, team, league FROM batter JOIN winlose ON batter.player = winlose.player
+7. SELECT team, player, homerun FROM batter WHERE homerun >= 30
+8. SELECT player, team, hit/dasuu FROM batter WHERE hit/dasuu >= 0.3 AND fourball >= 20
+9. SELECT MAX(deadball) FROM batter
+10. SELECT team, COUNT(homerun) FROM batter GROUP BY team
+11. SELECT player, hit/dasuu FROM batter WHERE player like '%石%'
+
+課題2
+1. SELECT movie_title, AVG(rating) FROM data JOIN item ON data.item_id = item.movie_id GROUP_BY movie_title
