@@ -1,0 +1,20 @@
+create table jonnys (name varchar(50), team varchar(50), bornln varchar, bloodType varchar(50), birthYear int, age int);
+insert into jonnys (name, team, bornln, bloodType, birthYear) values (nakai, smap, kanagawa, a, 1972);
+insert into jonnys (name, team, bornln, bloodType, birthYear) values (kimura, smap, tokyo, o, 1972);
+insert into jonnys (name, team, bornln, bloodType, birthYear) values (inagaki, smap, tokyo, o, 1973);
+insert into jonnys (name, team, bornln, bloodType, birthYear) values (kusanagi, smap, saitama, a, 1974);
+insert into jonnys (name, team, bornln, bloodType, birthYear) values (ohno, arashi, tokyo, a, 1980);
+insert into jonnys (name, team, bornln, bloodType, birthYear) values (sakurai, arashi, tokyo, a, 1982);
+insert into jonnys (name, team, bornln, bloodType, birthYear) values (aiba, arashi, chiba, ab, 1982);
+insert into jonnys (name, team, bornln, bloodType, birthYear) values (ninomiya, arashi, tokyo, a, 1983);
+insert into jonnys (name, team, bornln, bloodType, birthYear) values (matsumoto, arashi, tokyo, a, 1983);
+show jonnys;
+
+update jonnys set age = (2018 - birthYear);
+delete from jonnys where team = 'smap';
+show jonnys;
+
+
+2. 作文bot
+先にtableを作っておく
+create table words (word varchar(50));
