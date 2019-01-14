@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>jQueryサンプル</title>
+</head>
+<body>
+<span id="t1">Hello</span>
+<hr>
+文字の色:
+<input id="fc1" type="button" value="赤">
+<input id="fc2" type="button" value="緑">
+<input id="fc3" type="button" value="青">
+<br>
+背景の色:
+<input id="bgc1" type="button" value="赤">
+<input id="bgc2" type="button" value="緑">
+<input id="bgc3" type="button" value="青">
+<br>
+文字サイズ:
+<input id="fs1" type="button" value="12pt">
+<input id="fs2" type="button" value="18pt">
+<input id="fs3" type="button" value="24pt">
+<br>
+テキスト：
+<input id="ti" type="text"><input id="mod" type="button" value="テキストを変更">
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+function change_font(id_name, font_size) {
+  $(id_name).css("font-size", font_size);
+}
+
+function change_text_color(id_name, color) {
+  $(id_name).css("color", color);
+}
+
+function change_background_color(id_name, color) {
+  $(id_name).css("background-color", color);
+}
+
+$(function(){
+
+    $('#fc1').click(function(){ //文字を赤くするボタン
+        change_text_color("#t1", "red");
+    });
+
+    $("#fc2").click(function(){
+        change_text_color("#t1", "green");
+    });
+
+    $("#fc3").click(function(){
+        change_text_color("#t1", "blue");
+    });
+
+    $("#bgc1").click(function(){
+        change_background_color("#t1", "red");
+    });
+
+    $("#bgc2").click(function(){
+        change_background_color("#t1", "green");
+    });
+
+    $("#bgc3").click(function(){
+        change_background_color("#t1", "blue");
+    });
+    
+    $("#fs1").click(function(){
+        change_font("#t1", "12px");
+    });
+
+    $("#fs2").click(function(){
+        change_font("#t1", "18px");
+    });
+
+    $("#fs3").click(function(){
+        change_font("#t1", "24px");
+    });
+
+    $("#mod").click(function(){
+      var val = $("#ti").val();
+      console.log(val);
+      $("#t1").text(val);
+    });
+});
+</script>
+</body>
+</html>
