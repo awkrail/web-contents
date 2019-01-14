@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>jQueryサンプル</title>
+</head>
+<body>
+おみくじ<br>
+<span id="t1"></span>
+<hr>
+<input id="mod" type="button" value="おみくじを引く">
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+$(function(){
+    $("#mod").click(function(){
+      var a = Math.floor( Math.random() * 11 ) ;
+      if(a < 2) {
+        text = "大吉";
+        $("#t1").css("color", "red");
+      } else if(2 <= a && a <= 5) {
+        text = "中吉";
+        $("#t1").css("color", "orange");
+      } else if(7 <= a && a <= 9) {
+        text = "吉";
+        $("#t1").css("color", "brown");
+      } else {
+        text = "小吉";
+        $("#t1").css("color", "yellow");
+      }
+      $("#t1").text(text);
+    });
+});
+</script>
+</body>
+</html>
